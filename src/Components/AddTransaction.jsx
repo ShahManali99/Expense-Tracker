@@ -20,7 +20,31 @@ const AddTransaction = () => {
 
   return (
     <>
-    <h3>Add new transaction</h3>
+      <div className="add-transaction-container">
+        <input type="text" value={label} onChange={(e)=>{
+                setLabel(e.target.value)}
+                } placeholder="Enter text..." />
+        <input type="number" value={amount} onChange={(e)=>{
+                setAmount(e.target.value)}
+                } placeholder="Enter amount..." />
+        <div className="radio-box">
+          <div>
+            <input type="radio" />
+            <label htmlFor="expense">Expense</label>
+          </div>
+          <div>
+            <input type="radio" />
+            <label htmlFor="Expense">Income</label>
+          </div>
+        </div>
+        <input type="date" value={date} onChange={(e)=>{
+              setDate(e.target.value)}
+              } placeholder="Enter date..."/>
+        <button className="btn" onClick={()=>{
+          handleAddTransactionBtn({id:crypto.randomUUID(),text:label, amount:+amount, date: date})}
+          }>Add transaction</button>
+      </div>
+      {/* <h3>Add new transaction</h3>
         <div className="form-control">
           <label htmlFor="text">Text</label>
           <input type="text" value={label} onChange={(e)=>{
@@ -28,12 +52,20 @@ const AddTransaction = () => {
             } placeholder="Enter text..." />
         </div>
         <div className="form-control">
-          <label htmlFor="amount">Amount <br />
-            (negative - expense, positive - income)
-            </label>
+          <label htmlFor="amount">Amount</label>
           <input type="number" value={amount} onChange={(e)=>{
             setAmount(e.target.value)}
             } placeholder="Enter amount..." />
+        </div>
+        <div className="radio-box">
+          <div>
+            <input type="radio" />
+            <label htmlFor="expense">Expense</label>
+          </div>
+          <div>
+            <input type="radio" />
+            <label htmlFor="Expense">Income</label>
+          </div>
         </div>
         <div className="form-control">
           <label htmlFor="date">Date</label>
@@ -43,7 +75,7 @@ const AddTransaction = () => {
         </div>
         <button className="btn" onClick={()=>{
           handleAddTransactionBtn({id:crypto.randomUUID(),text:label, amount:+amount, date: date})}
-          }>Add transaction</button>
+          }>Add transaction</button> */}
     </>
   )
 }

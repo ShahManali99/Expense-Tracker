@@ -16,7 +16,6 @@ function App() {
           <Balance />
           <IncomeExpense />
           <History />
-          <AddTransaction />
         </div>
       </ContextProvider>
     </>

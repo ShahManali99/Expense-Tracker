@@ -10,11 +10,14 @@ const History = () => {
       payload:id
     })
   }
+  const history = [...transactions].sort((a,b) => {
+    return new Date(b.date) - new Date(a.date)
+  })
   return (
     <>
         <h3>History</h3>
         <ul className="list">
-          {transactions.map((transaction)=>{
+          {history.map((transaction)=>{
             return (
               <li className={transaction.amount<0?'minus':'plus'} key={transaction.id}>
                 {transaction.text}
