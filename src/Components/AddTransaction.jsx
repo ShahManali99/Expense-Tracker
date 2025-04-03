@@ -5,6 +5,7 @@ import { ACTIONS } from '../Context/Reducer'
 const AddTransaction = () => {
     const [label, setLabel] = useState('')
     const [amount, setAmount] = useState(0)
+    const [date, setDate] = useState('')
     const {dispatch} = useContext(GlobalContext)
 
     const handleAddTransactionBtn = (transaction) => {
@@ -14,6 +15,7 @@ const AddTransaction = () => {
         })
         setLabel('');
         setAmount(0);
+        setDate('');
     }
 
   return (
@@ -33,8 +35,14 @@ const AddTransaction = () => {
             setAmount(e.target.value)}
             } placeholder="Enter amount..." />
         </div>
+        <div className="form-control">
+          <label htmlFor="date">Date</label>
+          <input type="date" value={date} onChange={(e)=>{
+              setDate(e.target.value)}
+              } placeholder="Enter date..."/>
+        </div>
         <button className="btn" onClick={()=>{
-          handleAddTransactionBtn({id:crypto.randomUUID(),text:label, amount:+amount})}
+          handleAddTransactionBtn({id:crypto.randomUUID(),text:label, amount:+amount, date: date})}
           }>Add transaction</button>
     </>
   )

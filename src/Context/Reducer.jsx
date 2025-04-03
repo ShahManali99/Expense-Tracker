@@ -1,3 +1,5 @@
+import { saveTransactionsToLocalStorage } from "./Context"
+
 export const ACTIONS = {
     DELETE_HISTORY: 'delete-history',
     ADD_TRANSACTION: 'add-transaction'
@@ -5,11 +7,15 @@ export const ACTIONS = {
 export const Reducer = (state, action) => {
     switch (action.type) {
         case ACTIONS.DELETE_HISTORY:
-            return {...state, transactions: state.transactions.filter(transaction=>transaction.id !== action.payload)}
+            const deleteTransaction = state.transactions.filter(transaction=>transaction.id !== action.payload)
+            saveTransactionsToLocalStorage(deleteTransaction)
+            return {...state, transactions: deleteTransaction}
         case ACTIONS.ADD_TRANSACTION:
+            const addTransaction = [action.payload, ...state.transactions]
+            saveTransactionsToLocalStorage(addTransaction)
             return {
                 ...state,
-                transactions:[action.payload, ...state.transactions]
+                transactions:addTransaction
             }
         default:
             return {...state};

@@ -17,7 +17,8 @@ const History = () => {
           {transactions.map((transaction)=>{
             return (
               <li className={transaction.amount<0?'minus':'plus'} key={transaction.id}>
-                {transaction.text} 
+                {transaction.text}
+                <span>{transaction.date}</span> 
                 <span>{transaction.amount<0?'-':'+'}${Math.abs(transaction.amount)}</span>
                 <button className='delete-btn' onClick={()=>handleDeleteHistory(transaction.id)}>x</button>
               </li>

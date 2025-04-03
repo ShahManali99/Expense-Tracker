@@ -1,9 +1,13 @@
 import React, {useReducer, createContext} from "react";
 import {Reducer} from './Reducer';
 
+export const saveTransactionsToLocalStorage  = (transactions) => {
+  localStorage.setItem('transactions',JSON.stringify(transactions))
+}
+
 //initial state
 const initial_state = {
-    transactions : []
+    transactions : JSON.parse(localStorage.getItem('transactions')) || []
 }
 
 //create context
