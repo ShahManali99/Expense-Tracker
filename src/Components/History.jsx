@@ -21,17 +21,30 @@ const History = () => {
       return new Date(b.date) - new Date(a.date)
     })
 
+    const formatAmount = (amount) => {
+      const absAmount = Math.abs(amount);
+      const sign = amount < 0 ? '-' : '+';
+      if (absAmount >= 1000000) {
+        return `${sign}$${(absAmount/1000000).toFixed(1)}M`; // $1000.0M
+      }
+      return `${sign}$${absAmount.toLocaleString('en-US', {
+        maximumFractionDigits: 2,
+        minimumFractionDigits: absAmount % 1 === 0 ? 0 : 2
+      })}`;
+
+    };
+
   return (
     <>
         <h3>History</h3>
-        <input type='text' placeholder='Search' className='search' value={searchText} onChange={(e)=>setSearchText(e.target.value)}/>
+        <input type='text' placeholder='Search' className='search' value={searchText} onChange={(e)=>setSearchText(e.target.value)}/> 
         <ul className="list">
           {filteredTransactions.length > 0 ? filteredTransactions.map((transaction)=>{
             return (
               <li className={transaction.amount<0?'minus':'plus'} key={transaction.id}>
                 {transaction.text}
                 <span>{transaction.date}</span> 
-                <span>{transaction.amount<0?'-':'+'}${Math.abs(transaction.amount)}</span>
+                <span>{formatAmount(transaction.amount)}</span>
                 <button className='delete-btn' onClick={()=>handleDeleteHistory(transaction.id)}>x</button>
               </li>
             )

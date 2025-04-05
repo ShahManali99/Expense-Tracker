@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import { GlobalContext } from '../Context/Context'
 import { ACTIONS } from '../Context/Reducer'
 
-const AddTransaction = () => {
+const AddTransaction = ({setShowAddTxnBtn}) => {
     const [label, setLabel] = useState('')
     const [amount, setAmount] = useState(0)
     const [selectedOption, setSelectedOption] = useState('expense')
@@ -26,6 +26,7 @@ const AddTransaction = () => {
         setLabel('');
         setAmount(0);
         setDate('');
+        setShowAddTxnBtn(true)
     }
 
   return (

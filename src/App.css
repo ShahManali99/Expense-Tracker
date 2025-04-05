@@ -106,29 +106,10 @@ input[type='date'] {
   outline: 0;
 }
 
-.list {
+ .list {
   list-style-type: none;
   padding: 0;
   margin-bottom: 40px;
-}
-
-.list li {
-  background-color: #fff;
-  box-shadow: var(--box-shadow);
-  color: #333;
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  padding: 10px;
-  margin: 10px 0;
-}
-
-.list li.plus {
-  border-right: 5px solid #2ecc71;
-}
-
-.list li.minus {
-  border-right: 5px solid #c0392b;
 }
 
 .delete-btn {
@@ -145,7 +126,43 @@ input[type='date'] {
   transform: translate(-100%, -50%);
   opacity: 0;
   transition: opacity 0.3s ease;
+} 
+
+.list li {
+  background-color: #fff;
+  box-shadow: var(--box-shadow);
+  color: #333;
+  display: grid;
+  grid-template-columns:  minmax(120px, 1fr)    /* Text - minimum 120px, grows as needed */
+                          minmax(90px, auto)    /* Date - fixed width */
+                          minmax(100px, auto);  /* Amount - fixed width but expands for large numbers */
+  gap: 10px;
+  align-items: center;
+  position: relative;
+  padding: 10px;
+  margin: 10px 0;
+  word-break: break-word;
 }
+
+.list li.plus {
+  border-right: 5px solid #2ecc71;
+}
+
+.list li.minus {
+  border-right: 5px solid #c0392b;
+}
+
+ .list li span:first-of-type {
+  text-align: right;
+  color: #777;
+  font-size: 0.9em;
+}
+
+.list li span:last-of-type {
+  font-weight: bold;
+  min-width: 80px;
+  text-align: right;
+} 
 
 .list li:hover .delete-btn {
   opacity: 1;

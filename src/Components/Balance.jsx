@@ -16,7 +16,7 @@ const Balance = () => {
           </div>
           <span><button className='addCancelBtn' onClick={()=>setShowAddTxnBtn(!showAddTxnBtn)}>{showAddTxnBtn?'ADD':'Cancel'}</button></span>
         </div>
-        {!showAddTxnBtn && <AddTransaction />}
+        {!showAddTxnBtn && <AddTransaction setShowAddTxnBtn={setShowAddTxnBtn}/>}
     </>
   )
 }
